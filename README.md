@@ -4,757 +4,416 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
 <title>JAPPY BIRTHDAY MY LOVE — IMPU</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;500;700;900&family=Great+Vibes&display=swap" rel="stylesheet">
 <style>
   :root{
-    --bg:#06050a;
-    --panel: rgba(255,255,255,0.04);
-    --accent:#ff4db8;
-    --accent-2:#ff83cf;
-    --glass: rgba(255,255,255,0.03);
-    --neon: 0 0 20px rgba(255,77,184,0.25), 0 0 40px rgba(255,131,207,0.12);
-    --text:#f8f7fb;
-    --muted: rgba(248,247,251,0.6);
-    font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+    --bg:#070417;
+    --glass: rgba(255,255,255,0.04);
+    --accent:#ff69b4;
+    --accent-2:#ffb3d9;
+    --muted: rgba(255,255,255,0.15);
+    --glass-2: rgba(255,255,255,0.03);
+  }
+  html,body{height:100%;margin:0;background:radial-gradient(1200px 600px at 10% 10%, rgba(255,0,150,0.04), transparent), radial-gradient(900px 400px at 90% 90%, rgba(0,150,255,0.02), transparent), var(--bg); color:#fff; font-family:'Plus Jakarta Sans',system-ui,Segoe UI,Roboto,Helvetica,Arial,sans-serif; -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale;}
+  .app{
+    height:100vh; width:100vw; display:grid; place-items:center; position:relative; overflow:hidden;
   }
 
-  html,body{height:100%;margin:0;background:linear-gradient(180deg,#05040a 0%, #0b0710 100%);color:var(--text);-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;}
-  .stage{
-    height:100vh;
-    width:100%;
-    position:relative;
-    overflow:hidden;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-  }
-
-  /* Shared card */
-  .card {
-    width:min(980px,94%);
-    max-width:1100px;
-    border-radius:18px;
+  /* GLOBAL GLASS CARD */
+  .card{
+    width:min(980px,94vw); max-height:92vh; border-radius:20px; padding:28px; box-sizing:border-box;
     background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
-    box-shadow: 0 10px 40px rgba(2,2,6,0.7);
-    backdrop-filter: blur(10px) saturate(120%);
-    padding:36px;
-    position:relative;
-    overflow:hidden;
-    min-height:560px;
-    display:flex;
-    flex-direction:column;
-    gap:18px;
+    border: 1px solid rgba(255,255,255,0.04); box-shadow: 0 12px 40px rgba(0,0,0,0.6);
+    backdrop-filter: blur(8px) saturate(120%); -webkit-backdrop-filter: blur(8px) saturate(120%);
+    display:flex; flex-direction:column; gap:16px; align-items:center; justify-content:center;
   }
 
-  /* Top title */
-  .title {
-    text-align:center;
-    margin-top:8px;
-    margin-bottom:6px;
+  /* Hero text */
+  .title{
+    text-align:center; letter-spacing:1px;
   }
   .title h1{
-    margin:0;
-    font-size: clamp(28px, 4.6vw, 56px);
-    letter-spacing:1px;
-    line-height:1;
-    font-weight:700;
-    color:var(--text);
-    text-shadow: 0 6px 24px rgba(0,0,0,0.7), var(--neon);
+    margin:0; font-size:clamp(28px,6vw,56px); font-weight:900; line-height:0.9; font-family:'Great Vibes', cursive;
+    color:linear-gradient(#fff,#fff); transform:translateZ(0);
+    text-shadow: 0 6px 24px rgba(255,105,180,0.12), 0 2px 8px rgba(0,0,0,0.6);
   }
+
   .subtitle{
-    color:var(--muted);
-    font-size:clamp(13px,1.6vw,16px);
-    margin-top:8px;
+    font-weight:500; font-size:clamp(13px,2vw,18px); color:var(--muted); margin-top:8px;
   }
 
-  /* name badge */
-  .name-badge{
-    display:inline-flex;
-    gap:8px;
-    align-items:center;
-    margin-top:12px;
-    justify-content:center;
+  /* IMPU name style with heart & star */
+  .name{
+    margin-top:12px; display:flex; gap:8px; align-items:center; justify-content:center;
+    transform-style:preserve-3d;
   }
-  .name {
-    font-weight:800;
-    color:var(--text);
-    font-size: clamp(18px,2.5vw,22px);
-    display:inline-flex;
-    gap:8px;
-    align-items:center;
-    padding:8px 14px;
-    border-radius:999px;
-    background: linear-gradient(90deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
-    box-shadow: 0 6px 20px rgba(0,0,0,0.6);
+  .name .badge{
+    font-weight:800; font-size:28px; letter-spacing:2px; padding:10px 18px; border-radius:14px;
+    background: linear-gradient(135deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01));
+    border:1px solid rgba(255,255,255,0.04);
   }
-  .name .heart {
-    width:20px;height:20px;border-radius:4px;
-    display:inline-block;
-    transform:translateY(1px);
-    filter: drop-shadow(0 6px 20px rgba(255,77,184,0.15));
+  .spark-heart{
+    display:inline-flex; align-items:center; justify-content:center; width:56px; height:56px;
+    border-radius:50%; background: linear-gradient(135deg, rgba(255,105,180,0.18), rgba(255,180,210,0.08));
+    box-shadow: 0 8px 30px rgba(255,105,180,0.14), inset 0 1px 0 rgba(255,255,255,0.06);
+    position:relative; transform:translateZ(40px) rotate(-8deg);
   }
-  .name .star{
-    font-size:14px;
-    margin-left:4px;
-    color: #ffd86b;
-    text-shadow: 0 6px 20px rgba(255,216,107,0.08);
+  .spark-heart::after{
+    content:"";
+    position:absolute; inset:6px; border-radius:50%;
+    background: radial-gradient(circle at 35% 30%, rgba(255,255,255,0.7), rgba(255,255,255,0.05) 20%, transparent 25%);
+    mix-blend-mode:screen; filter:blur(2px);
   }
+  .spark-heart svg{ width:32px; height:32px; filter:drop-shadow(0 6px 18px rgba(255,105,180,0.18)); }
 
-  /* canvas layers fill */
-  canvas{
-    position:absolute;
-    inset:0;
-    width:100%;
-    height:100%;
-    display:block;
-    pointer-events:none;
-  }
+  /* falling hearts container (behind card) */
+  .hearts-layer{ position:absolute; inset:0; pointer-events:none; overflow:hidden; z-index:1; transform-style:preserve-3d; }
 
   /* bottom prompt */
-  .footer{
-    margin-top:auto;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    gap:12px;
+  .prompt{
+    margin-top:18px; display:flex; gap:12px; align-items:center;
   }
-  .btn {
-    --pad:14px 26px;
-    background: linear-gradient(90deg, rgba(255,77,184,0.14), rgba(255,131,207,0.08));
-    border:1px solid rgba(255,255,255,0.06);
-    color:var(--text);
-    padding:var(--pad);
-    border-radius:999px;
-    font-weight:700;
-    letter-spacing:0.6px;
-    cursor:pointer;
-    box-shadow: var(--neon), 0 6px 18px rgba(0,0,0,0.5);
-    transition: transform .28s cubic-bezier(.2,.9,.3,1), opacity .22s;
-    backdrop-filter: blur(6px);
+  .btn{
+    appearance:none; border:0; outline:0; cursor:pointer; padding:12px 18px; border-radius:12px; background:linear-gradient(90deg,var(--accent),var(--accent-2));
+    color:#111; font-weight:700; box-shadow: 0 8px 30px rgba(255,105,180,0.15), 0 2px 6px rgba(0,0,0,0.6);
+    transform:translateZ(40px); transition:transform .18s ease, box-shadow .18s ease;
   }
-  .btn:active{ transform:translateY(2px) scale(.996); }
-  .hint { color:var(--muted); font-size:13px; text-align:center; margin-top:6px; }
+  .btn:active{ transform:translateY(2px) scale(.995); }
+  .mutebtn{ background:transparent; border:1px solid rgba(255,255,255,0.06); color:var(--muted); padding:8px 12px; border-radius:10px; font-weight:600; }
 
-  /* page flip animation */
-  .page {
-    position:absolute;
-    inset:18px;
-    border-radius:14px;
-    overflow:hidden;
-    display:flex;
-    flex-direction:column;
-    background:transparent;
-    transition: transform .9s cubic-bezier(.2,.9,.3,1), opacity .45s ease;
-    transform-origin:center right;
-    pointer-events:auto;
-  }
-  .page.hidden{ opacity:0; transform: perspective(900px) rotateY(20deg) translateX(40px) scale(.98); pointer-events:none; }
+  /* small sparkle animation near title */
+  .sparkles{ display:inline-block; vertical-align:middle; width:26px; height:26px; margin-left:8px; transform:translateY(-4px); }
+  .sparkles svg{ filter:drop-shadow(0 8px 18px rgba(255,105,180,0.12)); }
 
-  /* second page visuals */
-  .secondContent{
-    padding:44px;
-    display:flex;
-    flex-direction:column;
-    align-items:center;
-    justify-content:center;
-    gap:18px;
-    text-align:center;
-    height:100%;
-    color:var(--text);
+  /* second page (hidden by default) */
+  .stage-two{ position:absolute; inset:0; display:flex; align-items:center; justify-content:center; background:linear-gradient(180deg, rgba(0,0,0,0.45), rgba(0,0,0,0.6)); z-index:5; opacity:0; pointer-events:none; transition:opacity .8s cubic-bezier(.2,.9,.24,1); }
+  .stage-two.show{ opacity:1; pointer-events:auto; }
+  .stars-canvas{ position:absolute; inset:0; z-index:1; }
+  .two-content{ z-index:2; color:#fff; max-width:980px; padding:36px; text-align:center; border-radius:18px; background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01)); border:1px solid rgba(255,255,255,0.03); box-shadow: 0 12px 40px rgba(0,0,0,0.6); backdrop-filter: blur(6px); }
+
+  .two-content .message{ font-size:clamp(18px,2.6vw,28px); line-height:1.4; white-space:pre-line; font-weight:600; letter-spacing:0.4px; font-family:'Plus Jakarta Sans'; margin-bottom:18px; opacity:0; transform:translateY(14px) scale(.995); transition:all .9s cubic-bezier(.2,.9,.24,1); }
+  .two-content .message.show{ opacity:1; transform:translateY(0) scale(1); }
+
+  .two-content .love-line{ font-family:'Great Vibes',cursive; font-size:44px; margin-top:10px; letter-spacing:0; transform:translateZ(0); text-shadow: 0 10px 40px rgba(255,105,180,0.12); }
+
+  .pulse{
+    display:inline-block; padding:10px 18px; border-radius:12px; margin-top:18px; font-weight:800;
+    background: linear-gradient(90deg, rgba(255,105,180,0.1), rgba(255,105,180,0.06));
+    border: 1px solid rgba(255,105,180,0.06);
+    transform-origin:center; animation:beat 1.25s infinite;
   }
-  .stars-back{
-    position:absolute;
-    inset:0;
-    z-index:0;
-    pointer-events:none;
+  @keyframes beat{
+    0%{ transform:scale(1); box-shadow: 0 8px 30px rgba(255,105,180,0.06); }
+    50%{ transform:scale(1.05); box-shadow: 0 18px 40px rgba(255,105,180,0.12); }
+    100%{ transform:scale(1); }
   }
 
-  /* message area */
-  .message {
-    z-index:2;
-    max-width:860px;
-    backdrop-filter: blur(6px);
-    padding:28px 24px;
-    border-radius:14px;
-    background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
-    box-shadow: 0 8px 40px rgba(1,1,6,0.6);
-    display:flex;
-    flex-direction:column;
-    gap:8px;
-    align-items:center;
-  }
-  .message p{
-    margin:0;
-    font-size: clamp(16px,2.2vw,22px);
-    line-height:1.45;
-    color:var(--text);
-    white-space:pre-wrap;
-    font-weight:600;
-    text-shadow: 0 6px 20px rgba(0,0,0,0.6);
+  /* small footer controls */
+  .footer-row{ display:flex; gap:12px; justify-content:center; align-items:center; margin-top:12px; }
+
+  /* Responsive */
+  @media (max-width:640px){
+    .card{ padding:18px; border-radius:14px; }
+    .spark-heart{ width:48px; height:48px; }
   }
 
-  /* animated effect for lines */
-  .message .line{
-    display:inline-block;
-    opacity:0;
-    transform:translateY(10px) scale(.995);
-    animation:appear .9s forwards cubic-bezier(.2,.9,.3,1);
+  /* decorative star twinkle (for title) */
+  .twinkle{
+    display:inline-block; margin-left:10px; transform-origin:center; animation:twink 2.2s infinite;
   }
-  .message .line:nth-child(1){ animation-delay:.35s; }
-  .message .line:nth-child(2){ animation-delay:.9s; transform-origin:center; }
-  .message .line:nth-child(3){ animation-delay:1.4s; }
-  .message .line:nth-child(4){ animation-delay:1.9s; }
-  .message .line:nth-child(5){ animation-delay:2.45s; }
-  @keyframes appear{
-    from{ opacity:0; transform:translateY(14px) scale(.99) rotateX(6deg); filter:blur(6px); }
-    to{ opacity:1; transform:translateY(0) scale(1) rotateX(0); filter:blur(0); }
+  @keyframes twink {
+    0%,100%{ transform:scale(.9) rotate(0); opacity:0.7; }
+    50%{ transform:scale(1.15) rotate(12deg); opacity:1; }
   }
 
-  /* pulsing heart */
-  .big-heart{
-    width:120px;height:120px;
-    display:inline-block;
-    transform-origin:center;
-    animation:pulse 2.6s infinite cubic-bezier(.25,.9,.3,1);
-    filter: drop-shadow(0 12px 35px rgba(255,77,184,0.12));
-  }
-  @keyframes pulse{
-    0%{ transform:scale(.96) rotate(-6deg); }
-    50%{ transform:scale(1.02) rotate(6deg); }
-    100%{ transform:scale(.96) rotate(-6deg); }
-  }
+  /* animated type effect fallback */
+  .typed { display:inline-block; border-right:2px solid rgba(255,255,255,0.15); padding-right:6px; }
 
-  /* small helpers */
-  .controls{ display:flex; gap:12px; align-items:center; justify-content:center; margin-top:8px; z-index:3; }
-  .ghost {
-    font-size:13px;
-    color:var(--muted);
-  }
+  /* particle blast canvas */
+  #blastCanvas{ position:absolute; inset:0; z-index:6; pointer-events:none; }
 
-  /* responsive */
-  @media (max-width:720px){
-    .card{ padding:20px; min-height:640px; border-radius:14px; }
-    .message p{ font-size:16px; }
-    .big-heart{ width:92px;height:92px; }
-  }
 </style>
 </head>
 <body>
-  <div class="stage" id="stage">
-    <div class="card" role="main" aria-label="Birthday greeting card">
-      <!-- Layer canvases -->
-      <canvas id="heartsCanvas"></canvas>
-      <canvas id="particlesCanvas"></canvas>
+<div class="app" id="app">
+  <div class="hearts-layer" id="heartsLayer" aria-hidden="true"></div>
 
-      <!-- FRONT PAGE (page1) -->
-      <section class="page" id="page1" aria-hidden="false" style="position:relative; z-index:2;">
-        <div class="title" style="margin-top:10px;">
-          <h1>JAPPY BIRTHDAY MY LOVE</h1>
-          <div class="name-badge" aria-hidden="false">
-            <div class="name" title="IMPU">
-              <span style="color:var(--accent); font-size:20px;">IMPU</span>
-              <!-- Pink sparkle heart -->
-              <svg class="heart" viewBox="0 0 24 24" aria-hidden="true">
-                <defs>
-                  <linearGradient id="g1" x1="0" y1="0" x2="1" y2="1">
-                    <stop offset="0%" stop-color="#ff4db8"/>
-                    <stop offset="100%" stop-color="#ff83cf"/>
-                  </linearGradient>
-                </defs>
-                <path d="M12 21s-7-4.6-9.2-7.4C-1.6 8.7 4.2 3 8.4 5.2 10 6.2 12 8 12 8s2-.8 3.6-2.8C19.8 3 25.6 8.7 21.2 13.6 19 16.4 12 21 12 21z" fill="url(#g1)"/>
-              </svg>
-              <span class="star" aria-hidden="true">★</span>
-            </div>
-          </div>
-          <div class="subtitle">You are my light — every little thing reminds me of you ✨</div>
-        </div>
+  <div class="card" id="card">
+    <div class="title">
+      <h1>JAPPY BIRTHDAY MY LOVE</h1>
+      <div class="subtitle">pink sparkle heart <span class="sparkles" aria-hidden="true">
+        <!-- small sparkle svg -->
+        <svg viewBox="0 0 24 24" width="26" height="26" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M12 2l1.8 3.8L18 7l-4.2 2L12 12l-1.8-2L6 7l4.2-1.2L12 2z" fill="#fff" opacity=".95"/>
+          <path d="M5 16l.9 1.9L8 18l-1.1 1.1L6 21l-.9-1.9L4 18l1.1-1.1L5 16z" fill="#ff7ab6" opacity=".95"/>
+        </svg>
+      </span></div>
+    </div>
 
-        <div style="text-align:center;margin-top:18px;">
-          <svg class="big-heart" viewBox="0 0 24 24" aria-hidden="true">
-            <defs>
-              <linearGradient id="g2" x1="0" y1="0" x2="1" y2="1">
-                <stop offset="0%" stop-color="#ff8ac9"/>
-                <stop offset="100%" stop-color="#ff3fa0"/>
-              </linearGradient>
-            </defs>
-            <path d="M12 21s-7-4.8-9-7.8C1 9.4 6.5 4.6 9.1 6.4 10.6 7.6 12 9.2 12 9.2s1.4-1.6 2.9-2.8C17.5 4.6 23 9.4 21 13.2 19 16.2 12 21 12 21z" fill="url(#g2)"/>
-          </svg>
-        </div>
+    <div class="name" aria-hidden="false">
+      <div class="badge" aria-label="Name badge">IMPU</div>
+      <div class="spark-heart" title="heart">
+        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <path d="M12 21s-7-4.35-9.04-7.04C.9 10.87 3 6 7 6c2.2 0 3.2 1.45 5 3.11C14.8 7.45 15.8 6 18 6c4 0 6.1 4.87 4.04 7.96C19 16.65 12 21 12 21z" fill="#ff6aa6"/>
+        </svg>
+      </div>
+      <div style="display:flex;align-items:center; gap:8px; color:var(--muted); font-weight:700;">
+        <span class="twinkle" aria-hidden="true">★</span>
+      </div>
+    </div>
 
-        <p class="hint" style="margin-top:8px;">(Welcome — watch the little 3D hearts fall. When you're ready, click to continue.)</p>
+    <div style="margin-top:18px; text-align:center; color:var(--muted); max-width:70ch;">
+      <div class="subtitle">Welcome — open your heart and click to continue the surprise</div>
+    </div>
 
-        <div class="footer">
-          <button class="btn" id="nextBtn" aria-label="Click to go to next page">Click to go to the next page — Make a wish ✨</button>
-        </div>
-      </section>
+    <div class="prompt" role="group" aria-label="Continue">
+      <button class="btn" id="nextBtn">Click to next page →</button>
+      <button class="mutebtn" id="openSpotify" title="Open track in Spotify">Open track in Spotify</button>
+    </div>
 
-      <!-- SECOND PAGE (page2) -->
-      <section class="page hidden" id="page2" aria-hidden="true" style="z-index:3;">
-        <div class="stars-back" id="starsBack"></div>
+    <div style="font-size:12px; color:rgba(255,255,255,0.12); margin-top:8px; text-align:center;">(Tip: clicking "next" will trigger the effect and open Spotify in a new tab — this lets it play.)</div>
+  </div>
 
-        <div class="secondContent" role="article">
-          <div class="message" id="messageBox" aria-live="polite">
-            <!-- Animated message lines (we will fill using JS for exact formatting & timing) -->
-            <p class="line" id="l1"></p>
-            <p class="line" id="l2"></p>
-            <p class="line" id="l3"></p>
-            <p class="line" id="l4"></p>
-            <p class="line" id="l5"></p>
-          </div>
+  <!-- Stage two (hidden initially) -->
+  <div class="stage-two" id="stageTwo" role="dialog" aria-modal="true" aria-hidden="true">
+    <canvas class="stars-canvas" id="starsCanvas"></canvas>
+    <div class="two-content" id="twoContent" role="document" aria-label="Birthday message">
+      <div class="message" id="messageText" aria-live="polite">
+I MISS YOU MY LOVE.
+TEHERE WAS NOTHING BEFORE YOU,AND THERE IS NOTHING AFTER YOU.
+ IM WAITING TO HUG YOU 
+I LOVE YOU With animated effect
+My story begins with your smile, and it ends in your eyes
+      </div>
 
-          <div class="controls">
-            <button class="btn" id="replayBtn" aria-label="Replay animation">Replay</button>
-            <div class="ghost">Tap the hearts or press space to replay the blast ✨</div>
-          </div>
-        </div>
-      </section>
+      <div class="love-line">💫 IMPU — my everything</div>
 
+      <div class="footer-row">
+        <div class="pulse">HUG ME</div>
+      </div>
+
+      <div style="margin-top:16px;">
+        <!-- Spotify embed (user-provided track) -->
+        <iframe id="spotifyEmbed" src="https://open.spotify.com/embed/track/2xFUCXedvkdCj0AUPN2QvC?utm_source=generator" width="100%" height="80" frameborder="0" allowtransparency="true" allow="encrypted-media; clipboard-write" title="Spotify Embed"></iframe>
+      </div>
     </div>
   </div>
 
+  <!-- blast canvas overlay -->
+  <canvas id="blastCanvas"></canvas>
+</div>
+
 <script>
-/* ===============================================================
-   Friendly, self-contained interactive birthday greeting
-   - Canvas hearts falling (3D-ish)
-   - Click to produce blast particle effect and transition page
-   - Second page: stars background and animated message
-   - All in a single HTML file, no external libraries
-   =============================================================== */
+  /* Utility: random helpers */
+  function rand(min, max){ return Math.random()*(max-min)+min; }
+  function choice(arr){ return arr[Math.floor(Math.random()*arr.length)]; }
 
-(() => {
-  /* Utility */
-  const $ = sel => document.querySelector(sel);
+  /* HEARTS: spawn falling 3D hearts */
+  const heartsLayer = document.getElementById('heartsLayer');
+  const colors = ["#ff6aa6","#ff7ab6","#ff9cc9","#ffb3d9"];
+  let heartsRunning = true;
 
-  /* Canvas setup: heartsCanvas (background falling hearts) and particlesCanvas (blast) */
-  const heartsCanvas = $('#heartsCanvas');
-  const particlesCanvas = $('#particlesCanvas');
-  const stage = $('#stage');
-  const card = document.querySelector('.card');
+  function createHeart(x, scale, speed, rotate, color){
+    const el = document.createElement('div');
+    el.className = 'heart';
+    el.style.position = 'absolute';
+    el.style.left = (x*100) + 'vw';
+    el.style.top = '-8vh';
+    el.style.width = (48*scale)+'px';
+    el.style.height = (48*scale)+'px';
+    el.style.pointerEvents = 'none';
+    el.style.zIndex = 0;
+    el.style.transform = 'translateZ('+ (rand(-200,400)) +'px) rotate('+rotate+'deg)';
+    el.innerHTML = `
+      <svg viewBox="0 0 24 24" width="${48*scale}" height="${48*scale}" style="display:block;filter:drop-shadow(0 6px 24px rgba(255,105,180,0.12));">
+        <path d="M12 21s-7-4.35-9.04-7.04C.9 10.87 3 6 7 6c2.2 0 3.2 1.45 5 3.11C14.8 7.45 15.8 6 18 6c4 0 6.1 4.87 4.04 7.96C19 16.65 12 21 12 21z" fill="${color}"/>
+      </svg>
+    `;
+    heartsLayer.appendChild(el);
 
-  function fitCanvas(canvas){
-    const rect = card.getBoundingClientRect();
-    const dpr = Math.max(1, window.devicePixelRatio || 1);
-    canvas.width = Math.round(rect.width * dpr);
-    canvas.height = Math.round(rect.height * dpr);
-    canvas.style.width = rect.width + 'px';
-    canvas.style.height = rect.height + 'px';
-    canvas.getContext('2d').scale(dpr, dpr);
+    // animate fall
+    const duration = rand(5500,9500) / (speed||1);
+    el.animate([
+      { transform: el.style.transform + ' translateY(0vh)'},
+      { transform: el.style.transform + ' translateY(120vh)'}
+    ], {duration: duration, easing: 'cubic-bezier(.2,.8,.2,1)'});
+    setTimeout(()=> el.remove(), duration+120);
   }
 
-  function resizeAll(){
-    fitCanvas(heartsCanvas);
-    fitCanvas(particlesCanvas);
-    starField && starField.reset();
+  // initial wave of hearts
+  function startHearts(){
+    let spawn = setInterval(()=> {
+      if(!heartsRunning) { clearInterval(spawn); return; }
+      createHeart(Math.random()*0.9 + 0.05, rand(0.75,1.3), rand(0.8,1.2), rand(-45,20), choice(colors));
+      // occasionally spawn a big one
+      if(Math.random()<0.12) createHeart(Math.random()*0.9 + 0.05, rand(1.6,2.1), rand(0.7,1.0), rand(-20,40), "#ff2d95");
+    }, 380);
   }
-  window.addEventListener('resize', resizeAll);
+  startHearts();
 
-  /* Hearts falling */
-  const H = heartsCanvas.getContext('2d');
-  let hearts = [];
-  const maxHearts = 20;
+  /* BLAST: particle explosion on click - canvas */
+  const blastCanvas = document.getElementById('blastCanvas');
+  const bc = blastCanvas.getContext('2d');
+  function resizeBlast(){ blastCanvas.width = innerWidth; blastCanvas.height = innerHeight; }
+  resizeBlast(); window.addEventListener('resize', resizeBlast);
 
-  function rand(min,max){ return Math.random()*(max-min)+min; }
-
-  function makeHeartShape(ctx,x,y,s,angle,fillStyle,shadowColor){
-    ctx.save();
-    ctx.translate(x,y);
-    ctx.rotate(angle);
-    ctx.scale(s,s);
-    // draw heart path (centered)
-    ctx.beginPath();
-    ctx.moveTo(0,-6);
-    ctx.bezierCurveTo(0,-9,6,-12,8,-6);
-    ctx.bezierCurveTo(10,-1,6,4,0,10);
-    ctx.bezierCurveTo(-6,4,-10,-1,-8,-6);
-    ctx.bezierCurveTo(-6,-12,0,-9,0,-6);
-    ctx.closePath();
-    // shading gradient
-    const g = ctx.createLinearGradient(-12,-12,12,16);
-    g.addColorStop(0, fillStyle);
-    g.addColorStop(1, 'rgba(255,255,255,0.06)');
-    ctx.fillStyle = g;
-    ctx.shadowColor = shadowColor || 'rgba(0,0,0,0.35)';
-    ctx.shadowBlur = 8;
-    ctx.fill();
-    // glossy highlight
-    ctx.beginPath();
-    ctx.ellipse(2,-3,3,5, -0.5, 0, Math.PI*2);
-    ctx.fillStyle = 'rgba(255,255,255,0.18)';
-    ctx.globalCompositeOperation = 'lighter';
-    ctx.fill();
-    ctx.globalCompositeOperation = 'source-over';
-    ctx.restore();
-  }
-
-  class Heart {
-    constructor(w,h){
-      this.reset(w,h,true);
-    }
-    reset(w,h,fromTop=false){
-      this.x = rand(36, w-36);
-      this.y = fromTop ? rand(-80, -20) : rand(-120, h+60);
-      this.s = rand(.9,1.6);
-      this.vy = rand(30, 90) * (0.6 + Math.random()*0.8);
-      this.vx = rand(-20,20);
-      this.spin = rand(-1.2,1.2);
-      this.alpha = rand(.85,1);
-      this.color = Math.random()<0.5 ? 'rgba(255,77,184,0.95)' : 'rgba(255,131,207,0.95)';
-      this.shadow = 'rgba(200,20,90,0.12)';
-      this.angle = rand(-0.5,0.5);
-    }
-    step(dt, w, h){
-      this.y += this.vy * dt;
-      this.x += this.vx * dt;
-      this.angle += this.spin * 0.01;
-      // remove if beyond bottom
-      if(this.y - 40 > h) {
-        this.reset(w,h,true);
-      }
-    }
-    draw(ctx){
-      ctx.save();
-      ctx.globalAlpha = this.alpha;
-      makeHeartShape(ctx, this.x, this.y, this.s, this.angle, this.color, this.shadow);
-      ctx.restore();
-    }
-  }
-
-  function initHearts(){
-    hearts = [];
-    const rect = card.getBoundingClientRect();
-    for(let i=0;i<maxHearts;i++){
-      hearts.push(new Heart(rect.width, rect.height));
-    }
-  }
-
-  /* Particles for blast effect */
-  const P = particlesCanvas.getContext('2d');
-  let particles = [];
-
-  class Particle {
-    constructor(x,y,dx,dy,life,scale,color){
-      this.x = x; this.y = y; this.vx = dx; this.vy = dy;
-      this.life = life; this.age = 0; this.scale = scale; this.color = color;
-      this.spin = rand(-3,3);
-      this.angle = rand(0,Math.PI*2);
-    }
-    step(dt){
-      this.age += dt;
-      this.x += this.vx * dt;
-      this.y += this.vy * dt;
-      // gravity-ish
-      this.vy += 30 * dt;
-      this.angle += this.spin * 0.04;
-    }
-    draw(ctx){
-      const t = Math.max(0, 1 - this.age/this.life);
-      ctx.save();
-      ctx.globalAlpha = t * 0.98;
-      ctx.translate(this.x, this.y);
-      ctx.rotate(this.angle);
-      ctx.scale(this.scale * t, this.scale * t);
-      // draw small heart-ish particle
-      ctx.beginPath();
-      ctx.moveTo(0,-4);
-      ctx.bezierCurveTo(0,-6,3,-7,4,-4);
-      ctx.bezierCurveTo(5,-1,3,2,0,4);
-      ctx.bezierCurveTo(-3,2,-5,-1,-4,-4);
-      ctx.bezierCurveTo(-3,-7,0,-6,0,-4);
-      ctx.closePath();
-      const g = ctx.createLinearGradient(-6,-6,6,8);
-      g.addColorStop(0,this.color);
-      g.addColorStop(1,'rgba(255,255,255,0.05)');
-      ctx.fillStyle = g;
-      ctx.fill();
-      ctx.restore();
-    }
-    get done(){ return this.age >= this.life; }
-  }
-
-  function blast(x,y,strength=1){
-    const rect = card.getBoundingClientRect();
-    const count = Math.round(28 * strength + Math.random()*18);
+  function blastAt(x,y){
+    const particles = [];
+    const count = 90;
     for(let i=0;i<count;i++){
-      const ang = Math.random()*Math.PI*2;
-      const speed = rand(80,420) * (0.6 + Math.random()*0.8) * strength;
-      const dx = Math.cos(ang)*speed;
-      const dy = Math.sin(ang)*speed - Math.random()*120;
-      const life = rand(.9,1.8);
-      const s = rand(.6,1.4);
-      const col = Math.random()<0.5 ? 'rgba(255,77,184,0.95)' : 'rgba(255,131,207,0.95)';
-      particles.push(new Particle(x, y, dx, dy, life, s, col));
+      particles.push({
+        x, y,
+        vx: rand(-8,8),
+        vy: rand(-8,8),
+        r: rand(2,7),
+        life: rand(800,1700),
+        t:0,
+        fill: choice(colors.concat(["#fff","#ffd6ea","#ffdeef"]))
+      });
     }
-  }
-
-  /* Star field for second page */
-  const starsBackEl = $('#starsBack');
-  let starCanvas, starCtx, starField;
-
-  function ensureStarCanvas(){
-    if(!starCanvas){
-      starCanvas = document.createElement('canvas');
-      starCanvas.style.position = 'absolute';
-      starCanvas.style.inset = '0';
-      starCanvas.style.width = '100%';
-      starCanvas.style.height = '100%';
-      starCanvas.style.zIndex = '0';
-      starCanvas.id = 'starCanvas';
-      starsBackEl.appendChild(starCanvas);
-      starCtx = starCanvas.getContext('2d');
-    }
-    fitCanvas(starCanvas);
-  }
-
-  class StarField {
-    constructor(){
-      this.stars = [];
-      this.t = 0;
-      this.init();
-    }
-    init(){
-      ensureStarCanvas();
-      const rect = card.getBoundingClientRect();
-      const w = rect.width;
-      const h = rect.height;
-      const count = Math.round((w*h)/4000);
-      this.stars = [];
-      for(let i=0;i<count;i++){
-        this.stars.push({
-          x: Math.random()*w,
-          y: Math.random()*h,
-          r: Math.random()*1.8 + 0.3,
-          flick: Math.random()*1,
-          phase: Math.random()*Math.PI*2,
-          hue: 220 + Math.random()*40,
-          speed: Math.random()*0.04 + 0.01
-        });
+    const start = performance.now();
+    function step(now){
+      bc.clearRect(0,0,blastCanvas.width, blastCanvas.height);
+      let alive = 0;
+      for(const p of particles){
+        p.t = now - start;
+        if(p.t < p.life){
+          p.x += p.vx * (1 + p.t/1200);
+          p.y += p.vy * (1 + p.t/1200) + 0.5*(p.t/1200);
+          const alpha = 1 - (p.t/p.life);
+          bc.beginPath();
+          bc.globalAlpha = alpha;
+          bc.fillStyle = p.fill;
+          bc.arc(p.x, p.y, p.r * (1 + p.t/2000), 0, Math.PI*2);
+          bc.fill();
+          alive++;
+        }
       }
-      this.reset = () => this.init();
+      bc.globalAlpha = 1;
+      if(alive>0) requestAnimationFrame(step);
+      else bc.clearRect(0,0,blastCanvas.width, blastCanvas.height);
     }
-    step(dt){
-      this.t += dt;
-      const rect = card.getBoundingClientRect();
-      starCtx.clearRect(0,0,rect.width,rect.height);
-      for(const s of this.stars){
-        s.phase += s.speed * dt * 50;
-        const alpha = 0.4 + Math.abs(Math.sin(s.phase))*0.6;
-        starCtx.beginPath();
-        starCtx.fillStyle = `rgba(255,255,255,${alpha*0.85})`;
-        starCtx.arc(s.x, s.y, s.r, 0, Math.PI*2);
-        starCtx.fill();
-      }
-    }
+    requestAnimationFrame(step);
   }
 
-  /* Animation loop */
-  let last = performance.now()/1000;
-  let raf;
-  function loop(now){
-    const t = now/1000;
-    const dt = Math.min(0.05, t - last);
-    last = t;
-    // hearts
-    const rect = card.getBoundingClientRect();
-    H.clearRect(0,0,rect.width,rect.height);
-    for(const h of hearts){
-      h.step(dt, rect.width, rect.height);
-      h.draw(H);
-    }
-    // particles
-    P.clearRect(0,0,rect.width,rect.height);
-    for(let i=particles.length-1;i>=0;i--){
-      const p = particles[i];
-      p.step(dt);
-      p.draw(P);
-      if(p.done) particles.splice(i,1);
-    }
+  /* Transition to stage two */
+  const nextBtn = document.getElementById('nextBtn');
+  const stageTwo = document.getElementById('stageTwo');
+  const messageText = document.getElementById('messageText');
+  const twoContent = document.getElementById('twoContent');
+  const spotifyOpenBtn = document.getElementById('openSpotify');
 
-    // stars
-    if(starField) starField.step(dt);
-
-    raf = requestAnimationFrame(loop);
-  }
-
-  /* Page transition and UI behavior */
-  const page1 = $('#page1'), page2 = $('#page2');
-  const nextBtn = $('#nextBtn');
-  const replayBtn = $('#replayBtn');
-
-  function transitionToPage2(){
-    // make blast at center
-    const rect = card.getBoundingClientRect();
-    const cx = rect.width/2;
-    const cy = rect.height/2;
-    blast(cx, cy, 1.1);
-    // subtle short delay then flip
-    setTimeout(()=>{
-      page1.classList.add('hidden');
-      page1.setAttribute('aria-hidden','true');
-      page2.classList.remove('hidden');
-      page2.setAttribute('aria-hidden','false');
-      // ensure star field active
-      if(!starField) starField = new StarField();
-      // start animated lines
-      playMessageLines();
-    }, 420);
-  }
+  // open Spotify track in new tab (user provided link)
+  spotifyOpenBtn.addEventListener('click', ()=> {
+    window.open("https://open.spotify.com/track/2xFUCXedvkdCj0AUPN2QvC?si=DSEgokChT62dbKDBzdRUuA", "_blank");
+  });
 
   nextBtn.addEventListener('click', (e)=>{
-    // produce a more dramatic blast near the button's location
-    const btnRect = nextBtn.getBoundingClientRect();
-    const cardRect = card.getBoundingClientRect();
-    const x = btnRect.left - cardRect.left + btnRect.width/2;
-    const y = btnRect.top - cardRect.top + btnRect.height/2;
-    blast(x,y,1.5);
-    // small camera-like shake
-    card.animate([
-      { transform: 'translateY(0px)'},
-      { transform: 'translateY(-6px)'},
-      { transform: 'translateY(0px)'}
-    ], { duration:380, easing: 'cubic-bezier(.2,.9,.3,1)' });
-    setTimeout(transitionToPage2, 260);
+    // blast center near button
+    const r = nextBtn.getBoundingClientRect();
+    const cx = r.left + r.width/2 + rand(-120,120);
+    const cy = r.top + r.height/2 + rand(-50,50);
+    heartsRunning = false; // stop new hearts
+    blastAt(cx, cy);
+
+    // small camera shake and card hide
+    document.getElementById('card').animate([
+      { transform: 'translateY(0)'},
+      { transform: 'translateY(-12px) rotateZ(-1deg)'}
+    ], { duration: 280, easing: 'cubic-bezier(.2,.9,.24,1)' });
+
+    setTimeout(()=> {
+      // fade in stage two
+      stageTwo.classList.add('show');
+      stageTwo.setAttribute('aria-hidden','false');
+      // spawn a few slow hearts to drift
+      for(let i=0;i<18;i++){ setTimeout(()=> createHeart(Math.random()*0.95, rand(.9,1.4), rand(.98,1.2), rand(-30,30), choice(colors)), i*120); }
+      // animate message
+      setTimeout(()=> messageText.classList.add('show'), 680);
+      // attempt to open Spotify in new tab (user gesture continues)
+      try{ window.open("https://open.spotify.com/track/2xFUCXedvkdCj0AUPN2QvC?si=DSEgokChT62dbKDBzdRUuA", "_blank"); }catch(err){}
+    }, 420);
   });
 
-  // allow whole card click to produce a small blast on second page
-  card.addEventListener('click', (e)=>{
-    // only on second page produce small heart burst
-    if(!page2.classList.contains('hidden')){
-      const rect = card.getBoundingClientRect();
-      const x = (e.clientX - rect.left);
-      const y = (e.clientY - rect.top);
-      blast(x,y,0.9);
-    }
-  });
+  /* STARFIELD canvas for stage two */
+  const canvas = document.getElementById('starsCanvas');
+  const ctx = canvas.getContext('2d');
+  function resizeStars(){ canvas.width = window.innerWidth; canvas.height = window.innerHeight; }
+  resizeStars(); window.addEventListener('resize', resizeStars);
 
-  // keyboard control
-  window.addEventListener('keydown',(e)=>{
-    if(e.code === 'Space'){
-      e.preventDefault();
-      if(page2.classList.contains('hidden')){
-        nextBtn.click();
-      } else {
-        // replay small burst center
-        const rect = card.getBoundingClientRect();
-        blast(rect.width/2, rect.height/2, 0.9);
-        playMessageLines(true);
-      }
-    }
-  });
-
-  replayBtn.addEventListener('click', ()=>{
-    // big blast
-    const rect = card.getBoundingClientRect();
-    blast(rect.width/2, rect.height/2, 1.0);
-    playMessageLines(true);
-  });
-
-  /* MESSAGE LINES: exact content as requested, with animated effect */
-  const lines = [
-    "I MISS YOU MY LOVE.",
-    "THERE WAS NOTHING BEFORE YOU, AND THERE IS NOTHING AFTER YOU.",
-    "I'M WAITING TO HUG YOU",
-    "I LOVE YOU",
-    "My story begins with your smile, and it ends in your eyes"
-  ];
-  const lEls = [$('#l1'), $('#l2'), $('#l3'), $('#l4'), $('#l5')];
-
-  let typingControllers = [];
-
-  function clearTyping(){
-    // remove any scheduled timeouts
-    typingControllers.forEach(id=>clearTimeout(id));
-    typingControllers = [];
-  }
-
-  function playMessageLines(restart=false){
-    clearTyping();
-    // reset content & styles
-    lEls.forEach((el,i)=>{
-      el.textContent = '';
-      el.style.opacity = 0;
-      el.style.transform = 'translateY(12px) scale(.995)';
+  const stars = [];
+  for(let i=0;i<220;i++){
+    stars.push({
+      x: Math.random()*window.innerWidth,
+      y: Math.random()*window.innerHeight,
+      r: Math.random()*1.8 + 0.3,
+      alpha: Math.random()*0.9 + 0.1,
+      dx: (Math.random()-0.5)*0.02,
+      dy: (Math.random()-0.5)*0.02,
     });
+  }
 
-    // sequential typewriter-ish reveal (but keep the lines heavy and present as requested)
-    let baseDelay = 250;
-    lines.forEach((txt,i) => {
-      const start = baseDelay + i*650;
-      const el = lEls[i];
-      // delay then animate fade/slide + do a fast typewriter for effect
-      const fadeId = setTimeout(()=>{
-        // fade in container
-        el.style.transition = 'opacity .65s cubic-bezier(.2,.9,.3,1), transform .65s';
-        el.style.opacity = 1;
-        el.style.transform = 'translateY(0) scale(1)';
-        // now type text char by char:
-        let idx = 0;
-        const speed = Math.max(12, 28 - i*2); // slightly faster for later lines
-        const typeInterval = setInterval(()=>{
-          el.textContent = txt.slice(0, idx+1);
-          idx++;
-          if(idx >= txt.length){
-            clearInterval(typeInterval);
-          }
-        }, speed);
-        typingControllers.push(typeInterval);
-      }, start);
-      typingControllers.push(fadeId);
-    });
-
-    // small heart pulse effect each time
-    const bigHeart = document.querySelector('.big-heart');
-    if(bigHeart){
-      bigHeart.animate([
-        { transform: 'scale(1) rotate(-6deg)' },
-        { transform: 'scale(1.06) rotate(6deg)' },
-        { transform: 'scale(1) rotate(-6deg)' }
-      ], { duration: 1100, easing:'cubic-bezier(.2,.9,.3,1)' })
+  function drawStars(){
+    ctx.clearRect(0,0,canvas.width, canvas.height);
+    for(const s of stars){
+      s.x += s.dx; s.y += s.dy;
+      if(s.x < 0) s.x = canvas.width;
+      if(s.x > canvas.width) s.x = 0;
+      if(s.y < 0) s.y = canvas.height;
+      if(s.y > canvas.height) s.y = 0;
+      ctx.beginPath();
+      const g = ctx.createRadialGradient(s.x, s.y, 0, s.x, s.y, s.r*6);
+      g.addColorStop(0, 'rgba(255,255,255,' + (s.alpha) + ')');
+      g.addColorStop(0.3, 'rgba(255,255,255,' + (s.alpha*0.4) + ')');
+      g.addColorStop(1, 'rgba(255,255,255,0)');
+      ctx.fillStyle = g;
+      ctx.arc(s.x, s.y, s.r*6, 0, Math.PI*2);
+      ctx.fill();
     }
+    requestAnimationFrame(drawStars);
   }
+  drawStars();
 
-  /* Initialize */
-  function start(){
-    resizeAll();
-    initHearts();
-    // populate first page - small welcome burst on load
-    setTimeout(()=>{
-      const rect = card.getBoundingClientRect();
-      const cx = rect.width * 0.5;
-      const cy = rect.height * 0.25;
-      blast(cx, cy, 0.9);
-    }, 350);
-    // initial loop
-    last = performance.now()/1000;
-    cancelAnimationFrame(raf);
-    raf = requestAnimationFrame(loop);
-    // show a few drifting hearts already
-  }
+  /* nice gentle glow pulse for the message text after appear */
+  setInterval(()=> {
+    const el = document.querySelector('.love-line');
+    if(el) el.animate([{ transform:'scale(1)'},{ transform:'scale(1.02)'},{ transform:'scale(1)' }], { duration:2600, easing:'ease-in-out' });
+  }, 2600);
 
-  // star field must be created only when transitioning to page2; but ensure canvas fits.
-  ensureStarCanvas();
-  starField = null;
-
-  start();
-
-  // Accessibility: focus management
-  nextBtn.focus();
-
-  // Small decorative: gentle parallax for card based on mouse
-  let mouseX = 0, mouseY = 0;
-  card.addEventListener('mousemove', (e)=>{
-    const rect = card.getBoundingClientRect();
-    const cx = rect.left + rect.width/2;
-    const cy = rect.top + rect.height/2;
-    const dx = (e.clientX - cx)/rect.width;
-    const dy = (e.clientY - cy)/rect.height;
-    card.style.transform = `translate3d(${dx*6}px, ${dy*6}px, 0)`;
-  });
-  card.addEventListener('mouseleave', ()=>{
-    card.style.transform = '';
+  /* Accessibility: keyboard allow Enter to go next */
+  document.addEventListener('keydown', (e)=>{
+    if(e.key === 'Enter' && !stageTwo.classList.contains('show')) nextBtn.click();
   });
 
-  // Done.
-})();
+  /* small pre-warm: when user first clicks anywhere, spawn a few hearts */
+  document.addEventListener('pointerdown', function warm(){
+    for(let i=0;i<6;i++) createHeart(Math.random()*0.9 + 0.05, rand(.9,1.6), rand(0.9,1.1), rand(-40,40), choice(colors));
+    document.removeEventListener('pointerdown', warm);
+  });
+
+  // Ensure canvases match DPR for crispness
+  function fixCanvasDPR(){
+    [blastCanvas, canvas].forEach(c=>{
+      const ratio = window.devicePixelRatio || 1;
+      const w = window.innerWidth; const h = window.innerHeight;
+      c.width = Math.floor(w*ratio);
+      c.height = Math.floor(h*ratio);
+      c.style.width = w+'px'; c.style.height = h+'px';
+      const ctx = c.getContext('2d');
+      if(ctx) ctx.setTransform(ratio,0,0,ratio,0,0);
+    });
+  }
+  fixCanvasDPR(); window.addEventListener('resize', fixCanvasDPR);
+
+  // Small 'falling 3D' extra: add CSS animations for subtle parallax (done via JS spawn)
+  // the rest is handled above.
+
+  /* Helpful note for the user who will open the file:
+     - Because of browser autoplay policies, audio in the Spotify embed won't start until the user interacts.
+     - We open the Spotify track in a new tab on the user's click so playback can begin there.
+  */
 </script>
 </body>
 </html>
-
